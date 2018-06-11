@@ -18,7 +18,10 @@ class Bookshelf extends React.Component {
               <h2 className="bookshelf-title">{shelf}</h2>
               <div className="bookshelf-books">
               </div>
-                <Book books={this.props.books.filter((b) => b.selected === shelf)}/>
+                <Book shelves={this.props.shelves}
+                      books={this.props.books.filter((b) => b.selected === shelf)}
+                      onChangeSelection={this.props.onChangeSelection}
+                />
             </div>
           ))}
         </div>

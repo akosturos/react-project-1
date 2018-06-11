@@ -70,11 +70,18 @@ removeBook = (book) => {
     }))
   }
 
+changeSelection = (selection, book) => {
+    this.setState(() => ({
+      books: book.selection = this.shelves[selection]
+    }))
+  }
+
   render() {
     return (
       // {this.state.showSearchPage ? () : ()}
       <div className="app">
-        <Bookshelf onDeleteBook={this.removeBook} books={this.state.books} shelves={this.shelves}/>
+        <Bookshelf onDeleteBook={this.removeBook} onChangeSelection={this.changeSelection}
+          books={this.state.books} shelves={this.shelves}/>
         <Search />
       </div>
     )

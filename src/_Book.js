@@ -1,6 +1,7 @@
 import React from 'react'
 
 class Book extends React.Component {
+
   render() {
     console.log("Book-Props", this.props)
     return (
@@ -12,9 +13,9 @@ class Book extends React.Component {
               <div className="book-shelf-changer">
                 <select>
                   <option value="none" disabled>Move to...</option>
-                  <option value="currentlyReading">Currently Reading</option>
-                  <option value="wantToRead">Want to Read</option>
-                  <option value="read">Read</option>
+                  <option onClick={() => {this.props.changeSelection(0, book)}} value="currentlyReading">Currently Reading</option>
+                  <option onClick={() => {this.props.changeSelection(1, book)}} value="wantToRead">Want to Read</option>
+                  <option onClick={() => {this.props.changeSelection(2, book)}} value="read">Read</option>
                   <option value="none">None</option>
                 </select>
               </div>
