@@ -3,7 +3,6 @@ import React from 'react'
 class Book extends React.Component {
 
   render() {
-    console.log("Book-Props", this.props)
     return (
       <ol className="books-grid">
         {this.props.books.map((book) => (
