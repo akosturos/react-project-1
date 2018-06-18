@@ -17,37 +17,6 @@ class Bookshelf extends Component {
     console.log("BookShelf Props", this.props)
     return(
       <div>
-        <div className="search-books">
-          <div className="search-books-bar">
-            <a className="close-search" onClick={() => this.setState({ searchPage: false })}>Close</a>
-            <div className="search-books-input-wrapper">
-            {/*
-              NOTES: The search from BooksAPI is limited to a particular set of search terms.
-              You can find these search terms here:
-              https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
-
-              However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-              you don't find a specific author or title. Every search is limited by search terms.
-            */}
-              <input  type="text"
-                      placeholder="Search by title or author"
-                      value={this.state.query}
-                      onChange={(event) => this.updateQuery(this.target.value)}/>
-
-            </div>
-          </div>
-          <div className="search-books-results">
-            <ol className="books-grid"></ol>
-          </div>
-        </div>
-
-
-
-
-
-
-
-
         <div className="list-books">
           <div className="list-books-title">
             <h1>MyReads</h1>
@@ -57,11 +26,11 @@ class Bookshelf extends Component {
               <div className="bookshelf" key={shelf}>
                 <h2 className="bookshelf-title">{shelf}</h2>
                 <div className="bookshelf-books">
-                </div>
                   <Book shelves={this.props.shelves}
-                        books={this.props.books.filter((b) => b.selected === shelf)}
+                        books={this.props.books.filter((b) => b.shelf === shelf)}
                         onChangeSelection={this.props.onChangeSelection}
-                  />
+                        shelf={shelf}/>
+                </div>
               </div>
             ))}
           </div>

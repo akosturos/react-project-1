@@ -1,28 +1,29 @@
 import React from 'react'
 import Bookshelf from './_Bookshelf'
 import Search from './_Search'
+import { Route } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI.js'
 import './App.css'
 
 class BooksApp extends React.Component {
   shelves = [
-    "Currently Reading",
-    "Want to Read",
-    "Read"
+    "currentlyReading",
+    "wantToRead",
+    "read"
   ]
   state = {
     books: [],
   }
 
   componentDidMount() {
-    BooksAPI.getAll().then(books => {
+    BooksAPI.getAll().then((books) => {
       this.setState({ books })
     })
   }
 
 removeBook = (book) => {
     this.setState(() => ({
-      books: state.books.filter((b) => b.id !== book.id)
+      books: this.state.books.filter((b) => b.id !== book.id)
     }))
   }
 
@@ -49,4 +50,4 @@ changeSelection = (selection, book) => {
   }
 }
 
-export default App
+export default BooksApp
