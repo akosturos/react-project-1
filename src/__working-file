@@ -1,3 +1,9 @@
+1. after the search completes, then it redirects to the main page without a load
+
+
+
+
+
 selected={this.book.shelf === this.props.shelf}
 
 
