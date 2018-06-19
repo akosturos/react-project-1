@@ -6,13 +6,21 @@ import * as BooksAPI from './BooksAPI.js'
 import './App.css'
 
 class BooksApp extends React.Component {
+
   shelves = [
     "currentlyReading",
     "wantToRead",
     "read"
   ]
+  shelvesText = [
+    [this.shelves[0], "Currently Reading"],
+    [this.shelves[1], "Want to Read"],
+    [this.shelves[2], "Read"]
+  ]
+
   state = {
     books: [],
+    returnedSearch: []
   }
 
   componentDidMount() {
@@ -28,19 +36,25 @@ removeBook = (book) => {
   }
 
 changeSelection = (selection, book) => {
-    this.setState(() => ({
-      books: book.selection = this.shelves[selection]
-    }))
+    if (selection == "none") {
+      this.removeBook(book)
+    } else {
+      BooksAPI.update(book, selection).then(() => {
+        book.shelf = selection
+        this.setState(state => ({
+          books: this.state.books.filter(b => b.id !== book.id).concat([book])
+        }))
+      })
+    }
   }
 
   render() {
     return (
-
       <div className="app">
         <Route exact path="/" render={() => (
           <Bookshelf onDeleteBook={this.removeBook} onChangeSelection={this.changeSelection}
             books={this.state.books} shelves={this.shelves} showSearchPage={this.state.showSearchPage}
-            />
+            shelvesText={this.shelvesText} changeSelection={this.changeSelection}/>
         )}/>
         <Route path='/search' render={() => (
           <Search books={this.state.books} />

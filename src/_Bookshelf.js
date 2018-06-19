@@ -13,8 +13,24 @@ class Bookshelf extends Component {
     onDeleteBook: PropTypes.func.isRequired
   }
 
+  findShelf (s) {
+    switch (s) {
+      case this.props.shelvesText[0][0]: {
+        return this.props.shelvesText[0][1]
+        break
+      }
+      case this.props.shelvesText[1][0]: {
+        return this.props.shelvesText[1][1]
+        break
+      }
+      case this.props.shelvesText[2][0]: {
+        return this.props.shelvesText[2][1]
+        break
+      }
+    }
+  }
+
   render() {
-    console.log("BookShelf Props", this.props)
     return(
       <div>
         <div className="list-books">
@@ -24,11 +40,12 @@ class Bookshelf extends Component {
           <div className="list-books-content">
             {this.props.shelves.map((shelf) => (
               <div className="bookshelf" key={shelf}>
-                <h2 className="bookshelf-title">{shelf}</h2>
+                <h2 className="bookshelf-title">{this.findShelf(shelf)}</h2>
+                {console.log("AK", this.findShelf(shelf))}
                 <div className="bookshelf-books">
                   <Book shelves={this.props.shelves}
                         books={this.props.books.filter((b) => b.shelf === shelf)}
-                        onChangeSelection={this.props.onChangeSelection}
+                        changeSelection={this.props.changeSelection}
                         shelf={shelf}/>
                 </div>
               </div>
