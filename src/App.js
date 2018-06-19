@@ -23,7 +23,7 @@ class BooksApp extends React.Component {
     returnedSearch: []
   }
 
-  componentDidMount() {
+componentDidMount() {
     BooksAPI.getAll().then((books) => {
       this.setState({ books })
     })
@@ -48,6 +48,16 @@ changeSelection = (selection, book) => {
     }
   }
 
+updateReturnedSearch = (query) => {
+  if(query) {
+    BooksAPI.search(query).then((books) => {
+      this.setState({
+        returnedSearch: books
+      })
+    })
+  }
+}
+
   render() {
     return (
       <div className="app">
@@ -57,7 +67,9 @@ changeSelection = (selection, book) => {
             shelvesText={this.shelvesText} changeSelection={this.changeSelection}/>
         )}/>
         <Route path='/search' render={() => (
-          <Search books={this.state.books} />
+          <Search books={this.state.returnedSearch}
+                  changeSelection={this.changeSelection}
+                  updateReturnedSearch={this.updateReturnedSearch}/>
         )}/>
       </div>
     )

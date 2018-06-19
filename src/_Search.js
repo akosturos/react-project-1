@@ -15,7 +15,7 @@ class Search extends React.Component {
   }
   queryFunctions = (query) => {
     this.updateQuery(query)
-    this.updateReturnedSearch(query)
+    this.props.updateReturnedSearch(query)
   }
   updateQuery = (query) => {
     this.setState({
