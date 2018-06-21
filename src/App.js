@@ -47,7 +47,7 @@ changeSelection = (selection, book) => {
       })
     }
   }
-
+/*
 updateReturnedSearch = (query) => {
   if(query) {
     BooksAPI.search(query).then((books) => {
@@ -56,7 +56,7 @@ updateReturnedSearch = (query) => {
       APIreturn.map((book) => {
         this.state.books.map((b) => {
           if(b.id === book.id) {
-            
+
           }
         }
       })
@@ -65,9 +65,9 @@ updateReturnedSearch = (query) => {
       })
     })
   }
-}
-
+}*/
   render() {
+    console.log("App", this.state)
     return (
       <div className="app">
         <Route exact path="/" render={() => (
@@ -75,12 +75,12 @@ updateReturnedSearch = (query) => {
             books={this.state.books} shelves={this.shelves} showSearchPage={this.state.showSearchPage}
             shelvesText={this.shelvesText} changeSelection={this.changeSelection}/>
         )}/>
-        <Route path='/search' render={() => (
+      <Route path='/searchs' render={() => (
           <Search returnedBooks={this.state.returnedSearch}
                   books={this.state.books}
                   changeSelection={this.changeSelection}
                   updateReturnedSearch={this.updateReturnedSearch}/>
-        )}/>
+          )}/>
       </div>
     )
   }

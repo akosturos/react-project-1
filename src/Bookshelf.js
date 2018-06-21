@@ -29,8 +29,14 @@ class Bookshelf extends Component {
       }
     }
   }
-
+/*
+  <Book shelves={this.props.shelves}
+      books={book}
+      changeSelection={this.props.changeSelection}
+      shelf={shelf}/>
+*/
   render() {
+    console.log("Bookshelf", this.props)
     return(
       <div>
         <div className="list-books">
@@ -41,12 +47,15 @@ class Bookshelf extends Component {
             {this.props.shelves.map((shelf) => (
               <div className="bookshelf" key={shelf}>
                 <h2 className="bookshelf-title">{this.findShelf(shelf)}</h2>
-                {console.log("AK", this.findShelf(shelf))}
                 <div className="bookshelf-books">
-                  <Book shelves={this.props.shelves}
-                        books={this.props.books.filter((b) => b.shelf === shelf)}
-                        changeSelection={this.props.changeSelection}
-                        shelf={shelf}/>
+                  <ol className="books-grid">
+                  {this.props.books.filter((preFilterBooks) => preFilterBooks.shelf === shelf).map((postFilteredBooks) => (
+                    <div key={postFilteredBooks.id}>
+                      <Book book={postFilteredBooks} />
+                    </div>
+
+                    ))}
+                  </ol>
                 </div>
               </div>
             ))}
