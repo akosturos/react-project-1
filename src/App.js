@@ -10,12 +10,14 @@ class BooksApp extends React.Component {
   shelves = [
     "currentlyReading",
     "wantToRead",
-    "read"
+    "read",
+    "none"
   ]
   shelvesText = [
     [this.shelves[0], "Currently Reading"],
     [this.shelves[1], "Want to Read"],
-    [this.shelves[2], "Read"]
+    [this.shelves[2], "Read"],
+    [this.shelves[3], "None"]
   ]
 
   state = {
@@ -47,7 +49,12 @@ changeSelection = (selection, book) => {
       })
     }
   }
+
 /*
+this.setState({
+  returnedSearch: books
+})
+
 updateReturnedSearch = (query) => {
   if(query) {
     BooksAPI.search(query).then((books) => {
@@ -58,14 +65,15 @@ updateReturnedSearch = (query) => {
           if(b.id === book.id) {
 
           }
-        }
+        })
       })
-      this.setState({
-        returnedSearch: books
-      })
+
+
+
     })
   }
-}*/
+}
+*/
   render() {
     console.log("App", this.state)
     return (
@@ -79,7 +87,8 @@ updateReturnedSearch = (query) => {
           <Search returnedBooks={this.state.returnedSearch}
                   books={this.state.books}
                   changeSelection={this.changeSelection}
-                  updateReturnedSearch={this.updateReturnedSearch}/>
+                  updateReturnedSearch={this.updateReturnedSearch}
+                  shelves={this.shelves}/>
           )}/>
       </div>
     )

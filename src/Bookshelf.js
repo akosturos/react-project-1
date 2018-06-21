@@ -50,9 +50,9 @@ class Bookshelf extends Component {
                 <div className="bookshelf-books">
                   <ol className="books-grid">
                   {this.props.books.filter((preFilterBooks) => preFilterBooks.shelf === shelf).map((postFilteredBooks) => (
-                    <div key={postFilteredBooks.id}>
-                      <Book book={postFilteredBooks} />
-                    </div>
+                      <Book key={postFilteredBooks.id}
+                            book={postFilteredBooks}
+                            />
 
                     ))}
                   </ol>
