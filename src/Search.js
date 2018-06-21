@@ -29,7 +29,7 @@ class Search extends React.Component {
   }
 
   render() {
-    console.log("RS", this.props.returnedBooks)
+    console.log("Search", this.props.returnedBooks)
     return(
       <div className="search-books">
         <div className="search-books-bar">
@@ -42,7 +42,6 @@ class Search extends React.Component {
           </div>
           <div className="search-books-results">
             <ol className="books-grid">
-              <Book returnedBooks={this.props.returnedBooks} />
             </ol>
           </div>
         </div>

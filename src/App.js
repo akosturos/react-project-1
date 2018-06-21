@@ -75,7 +75,7 @@ updateReturnedSearch = (query) => {
             books={this.state.books} shelves={this.shelves} showSearchPage={this.state.showSearchPage}
             shelvesText={this.shelvesText} changeSelection={this.changeSelection}/>
         )}/>
-      <Route path='/searchs' render={() => (
+      <Route path='/search' render={() => (
           <Search returnedBooks={this.state.returnedSearch}
                   books={this.state.books}
                   changeSelection={this.changeSelection}
