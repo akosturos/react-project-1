@@ -51,6 +51,15 @@ changeSelection = (selection, book) => {
 updateReturnedSearch = (query) => {
   if(query) {
     BooksAPI.search(query).then((books) => {
+      let APIreturn = books
+      let emptyArray = []
+      APIreturn.map((book) => {
+        this.state.books.map((b) => {
+          if(b.id === book.id) {
+            
+          }
+        }
+      })
       this.setState({
         returnedSearch: books
       })
@@ -67,7 +76,8 @@ updateReturnedSearch = (query) => {
             shelvesText={this.shelvesText} changeSelection={this.changeSelection}/>
         )}/>
         <Route path='/search' render={() => (
-          <Search books={this.state.returnedSearch}
+          <Search returnedBooks={this.state.returnedSearch}
+                  books={this.state.books}
                   changeSelection={this.changeSelection}
                   updateReturnedSearch={this.updateReturnedSearch}/>
         )}/>
