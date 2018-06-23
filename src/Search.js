@@ -85,6 +85,10 @@ class Search extends React.Component {
                 <Book book={book}
                       shelf={this.props.shelves[3]}/>
               ))}
+              {this.state.queriedBooks.map((book) => (
+                <Book book={book}
+                      shelf={"none"}/>
+              ))}
             </ol>
           </div>
         </div>

@@ -29,12 +29,6 @@ class Bookshelf extends Component {
       }
     }
   }
-/*
-  <Book shelves={this.props.shelves}
-      books={book}
-      changeSelection={this.props.changeSelection}
-      shelf={shelf}/>
-*/
   render() {
     console.log("Bookshelf", this.props)
     return(
@@ -52,6 +46,8 @@ class Bookshelf extends Component {
                   {this.props.books.filter((preFilterBooks) => preFilterBooks.shelf === shelf).map((postFilteredBooks) => (
                       <Book key={postFilteredBooks.id}
                             book={postFilteredBooks}
+                            shelf={shelf}
+                            changeSelection={this.props.changeSelection}
                             />
 
                     ))}
