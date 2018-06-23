@@ -38,7 +38,7 @@ removeBook = (book) => {
   }
 
 changeSelection = (selection, book) => {
-    if (selection == "none") {
+    if (selection === "none") {
       this.removeBook(book)
     } else {
       BooksAPI.update(book, selection).then(() => {
@@ -50,30 +50,6 @@ changeSelection = (selection, book) => {
     }
   }
 
-/*
-this.setState({
-  returnedSearch: books
-})
-
-updateReturnedSearch = (query) => {
-  if(query) {
-    BooksAPI.search(query).then((books) => {
-      let APIreturn = books
-      let emptyArray = []
-      APIreturn.map((book) => {
-        this.state.books.map((b) => {
-          if(b.id === book.id) {
-
-          }
-        })
-      })
-
-
-
-    })
-  }
-}
-*/
   render() {
     console.log("App", this.state)
     return (
