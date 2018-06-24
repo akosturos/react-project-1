@@ -7,13 +7,8 @@ import { Link } from 'react-router-dom'
 class Search extends React.Component {
   state = {
     query: '',
-    queriedBooksNoShelf: [],
-    queriedBooksShelf: [],
     queriedBooks: []
 
-  }
-  componentWillUnmount(){
-      this.props.updateQuery('');
   }
 
   updateQuery = (query) => {
@@ -46,9 +41,6 @@ class Search extends React.Component {
   }
 
   render() {
-    console.log("Search this.props", this.props)
-    console.log("Search this.state", this.state)
-
     return(
       <div className="search-books">
         <div className="search-books-bar">
@@ -62,19 +54,6 @@ class Search extends React.Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {this.state.queriedBooks.map((book) => {
-              this.testBook(book)
-            }
-            )}
-            {this.state.queriedBooksShelf.map((book) => (
-              <Book book={book}
-                    shelf={book.shelf}
-                    changeSelection={this.props.changeSelection}/>
-            ))}
-            {this.state.queriedBooksNoShelf.map((book) => (
-              <Book book={book}
-                    shelf={this.props.shelves[3]}/>
-            ))}
             {this.state.queriedBooks.map((book) => (
               <Book key={book.id}
                     book={book}
