@@ -28,16 +28,14 @@ class Search extends React.Component {
     }
   }
 
-  testBook = (b) => {
-    let test = false
-    for (var book in this.props.books) {
-      if (book.id === b.id) {
-        this.state.queriedBooksShelf.concat(book)
+  inLibrary = (book) => {
+    let shelf = "none"
+    this.props.books.map((b) => {
+      if (b.id == book.id) {
+        shelf = b.shelf
       }
-    }
-    if (test === false) {
-      this.state.queriedBooksNoShelf.concat(book)
-    }
+    })
+    return shelf
   }
 
   render() {
@@ -57,7 +55,7 @@ class Search extends React.Component {
             {this.state.queriedBooks.map((book) => (
               <Book key={book.id}
                     book={book}
-                    shelf={"none"}
+                    shelf={this.inLibrary(book)}
                     changeSelection={this.props.changeSelection}/>
             ))}
           </ol>

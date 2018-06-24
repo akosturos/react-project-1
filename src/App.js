@@ -38,7 +38,7 @@ removeBook = (book) => {
   }
 
 changeSelection = (selection, book) => {
-    if (selection === "none") {
+    if (selection === this.shelves[3]) {
       this.removeBook(book)
     } else {
       BooksAPI.update(book, selection).then(() => {
@@ -59,12 +59,17 @@ changeSelection = (selection, book) => {
             books={this.state.books} shelves={this.shelves} showSearchPage={this.state.showSearchPage}
             shelvesText={this.shelvesText} changeSelection={this.changeSelection}/>
         )}/>
-      <Route path='/search' render={() => (
-          <Search returnedBooks={this.state.returnedSearch}
+      <Route path='/search' render={( { history} ) => (
+          <Search changeSelection={(selection, book) => {
+                  this.changeSelection(selection, book)
+                  if(selection !== this.shelves[3])
+                    history.push('/')
+              }}
+                  returnedBooks={this.state.returnedSearch}
                   books={this.state.books}
-                  changeSelection={this.changeSelection}
                   updateReturnedSearch={this.updateReturnedSearch}
-                  shelves={this.shelves}/>
+                  shelves={this.shelves}
+                  />
           )}/>
       </div>
     )
