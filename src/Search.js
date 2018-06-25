@@ -26,9 +26,6 @@ class Search extends React.Component {
         }
       })
     }
-    if (query === '') {
-      this.setState({queriedBooks : [] })
-    }
   }
 
   inLibrary = (book) => {
@@ -39,6 +36,20 @@ class Search extends React.Component {
       }
     })
     return shelf
+  }
+
+  mapQuery = (qb) => {
+    if (qb.length() <1) {
+      console.log("Length less than 1")
+    }
+    else {
+      this.state.queriedBooks.map((book) => (
+        <Book key={book.id}
+              book={book}
+              shelf={this.inLibrary(book)}
+              changeSelection={this.props.changeSelection}/>
+          )
+    }
   }
 
   render() {
