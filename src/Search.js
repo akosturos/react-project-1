@@ -16,18 +16,6 @@ class Search extends React.Component {
       query: query.trim(),
       queriedBooks: []
     })
-    if (this.state.query) {
-      BooksAPI.search(this.state.query).then((queriedBooks) => {
-        if (queriedBooks.error) {
-          this.setState({queriedBooks: []})
-        }
-        else {
-          this.setState({ queriedBooks })
-        }
-      })
-    } else {
-      this.setState({ queriedBooks: [] })
-    }
   }
 
   inLibrary = (book) => {
@@ -40,12 +28,24 @@ class Search extends React.Component {
     return shelf
   }
 
-  mapQuery = (qb) => {
-    if (qb.length === 0) {
+  mapQuery = (query) => {
+    if (query.length === 0) {
       return <h3>There are no books to display</h3>
     }
     else {
-      this.state.queriedBooks.map((book) => (
+      if (this.state.query) {
+        BooksAPI.search(this.state.query).then((queriedBooks) => {
+          if (queriedBooks.error) {
+            this.setState({ queriedBooks: [] })
+            console.log("Error!! in returning from API")
+            return <h2>There are no books to display</h2>
+          }
+          else {
+            this.setState({ queriedBooks })
+          }
+        })
+      }
+      return this.state.queriedBooks.map((book) => (
          <Book key={book.id}
                book={book}
                shelf={this.inLibrary(book)}
@@ -55,7 +55,7 @@ class Search extends React.Component {
   }
 
   render() {
-    console.log(this.state.query.length)
+    console.log(this.state.query.length, this.state.queriedBooks)
     return(
       <div className="search-books">
         <div className="search-books-bar">
@@ -69,14 +69,7 @@ class Search extends React.Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {this.mapQuery(this.state.queriedBooks)}
-            {this.state.queriedBooks.map((book) => (
-              <Book key={book.id}
-                    book={book}
-                    shelf={this.inLibrary(book)}
-                    changeSelection={this.props.changeSelection}/>
-            ))}
-
+            {this.mapQuery(this.state.query)}
           </ol>
         </div>
       </div>
