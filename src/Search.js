@@ -25,6 +25,8 @@ class Search extends React.Component {
           this.setState({ queriedBooks })
         }
       })
+    } else {
+      this.setState({ queriedBooks: [] })
     }
   }
 
@@ -43,17 +45,12 @@ class Search extends React.Component {
       console.log("Length less than 1")
     }
     else {
-      this.state.queriedBooks.map((book) => (
-        <Book key={book.id}
-              book={book}
-              shelf={this.inLibrary(book)}
-              changeSelection={this.props.changeSelection}/>
-          )
+      this.state.queriedBooks.map()
     }
   }
 
   render() {
-    console.log("Search", this.state.query, this.state.queriedBooks)
+    console.log("Query '","'", this.state.query, this.state.queriedBooks)
     return(
       <div className="search-books">
         <div className="search-books-bar">
@@ -73,6 +70,7 @@ class Search extends React.Component {
                     shelf={this.inLibrary(book)}
                     changeSelection={this.props.changeSelection}/>
             ))}
+
           </ol>
         </div>
       </div>
