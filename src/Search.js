@@ -41,16 +41,21 @@ class Search extends React.Component {
   }
 
   mapQuery = (qb) => {
-    if (qb.length() <1) {
-      console.log("Length less than 1")
+    if (qb.length === 0) {
+      return <h3>There are no books to display</h3>
     }
     else {
-      this.state.queriedBooks.map()
+      this.state.queriedBooks.map((book) => (
+         <Book key={book.id}
+               book={book}
+               shelf={this.inLibrary(book)}
+               changeSelection={this.props.changeSelection}/>
+           ))
     }
   }
 
   render() {
-    console.log("Query '","'", this.state.query, this.state.queriedBooks)
+    console.log(this.state.query.length)
     return(
       <div className="search-books">
         <div className="search-books-bar">
@@ -64,6 +69,7 @@ class Search extends React.Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
+            {this.mapQuery(this.state.queriedBooks)}
             {this.state.queriedBooks.map((book) => (
               <Book key={book.id}
                     book={book}
