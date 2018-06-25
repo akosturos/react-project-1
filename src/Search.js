@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom'
 class Search extends React.Component {
   state = {
     query: '',
-    queriedBooks: []
-
+    queriedBooks: [],
+    responseTrue: true
   }
 
   updateQuery = (query) => {
@@ -28,11 +28,8 @@ class Search extends React.Component {
     return shelf
   }
 
-  mapQuery = (query) => {
-    if (query.length === 0) {
-      return <h3>There are no books to display</h3>
-    }
-    else {
+  mapQuery() {
+    if (this.state.query.length !== 0) {
       if (this.state.query) {
         BooksAPI.search(this.state.query).then((queriedBooks) => {
           if (queriedBooks.error) {
@@ -54,6 +51,15 @@ class Search extends React.Component {
     }
   }
 
+  noQueryResult () {
+    if(this.state.queriedBooks.length < 1) {
+      return <h3 style={{textAlign: "center"}}>There are no books to display</h3>
+    }
+    else if(this.state.query.length === 0) {
+      return <h3 style={{textAlign: "center"}}>There are no books to display</h3>
+    }
+  }
+
   render() {
     console.log(this.state.query.length, this.state.queriedBooks)
     return(
@@ -69,8 +75,9 @@ class Search extends React.Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {this.mapQuery(this.state.query)}
+            {this.mapQuery()}
           </ol>
+            {this.noQueryResult(this.state.queriedBooks)}
         </div>
       </div>
     )

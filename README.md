@@ -1,6 +1,9 @@
-# Anthony Kosturos
-# June 2018
 # Project Title: My Reads
+## A REACT App that allows a user to find books and put them on three different shelves, labeled
+## "Currently Reading", "Wanting to Read", and "Read". Also, functionality to remove and replace books.
+
+### Anthony Kosturos
+### June 2018
 
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
@@ -12,7 +15,7 @@
 * Book.js - will be the main component to fill the book information
 
 
-# Backend Server
+## Backend Server
 This is the backend server, the provided file [`BooksAPI.js`](src/BooksAPI.js) contains the methods you will need to perform necessary operations on the backend:
 
 * [`getAll`](#getall)
