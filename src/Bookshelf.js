@@ -29,7 +29,6 @@ class Bookshelf extends Component {
     }
   }
   render() {
-    console.log("Bookshelf", this.props)
     return(
       <div>
         <div className="list-books">

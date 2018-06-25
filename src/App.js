@@ -51,7 +51,6 @@ changeSelection = (selection, book) => {
   }
 
   render() {
-    console.log("App", this.state)
     return (
       <div className="app">
         <Route exact path="/" render={() => (

@@ -31,7 +31,7 @@ class Search extends React.Component {
   inLibrary = (book) => {
     let shelf = "none"
     this.props.books.map((b) => {
-      if (b.id == book.id) {
+      if (b.id === book.id) {
         shelf = b.shelf
       }
     })
@@ -39,6 +39,7 @@ class Search extends React.Component {
   }
 
   render() {
+    console.log("Search", this.props)
     return(
       <div className="search-books">
         <div className="search-books-bar">
