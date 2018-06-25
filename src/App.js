@@ -22,7 +22,6 @@ class BooksApp extends React.Component {
 
   state = {
     books: [],
-    returnedSearch: []
   }
 
 componentDidMount() {
@@ -64,9 +63,7 @@ changeSelection = (selection, book) => {
                   if(selection !== this.shelves[3])
                     history.push('/')
               }}
-                  returnedBooks={this.state.returnedSearch}
                   books={this.state.books}
-                  updateReturnedSearch={this.updateReturnedSearch}
                   shelves={this.shelves}
                   />
           )}/>

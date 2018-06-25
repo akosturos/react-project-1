@@ -26,6 +26,9 @@ class Search extends React.Component {
         }
       })
     }
+    if (query === '') {
+      this.setState({queriedBooks : [] })
+    }
   }
 
   inLibrary = (book) => {
@@ -39,7 +42,7 @@ class Search extends React.Component {
   }
 
   render() {
-    console.log("Search", this.props)
+    console.log("Search", this.state.query, this.state.queriedBooks)
     return(
       <div className="search-books">
         <div className="search-books-bar">
